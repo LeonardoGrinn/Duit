@@ -20,22 +20,9 @@ class DuitViewController: UITableViewController {
         
         print(dataFilePath)
         
-        let newItem = Item()
-        newItem.title = "Domir"
-        itemArray.append(newItem)
-        
-        let newItem2 = Item()
-        newItem2.title = "Comer"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem3.title = "Crisis existencial"
-        itemArray.append(newItem3)
         
         //Data array consistent.
-//        if let items = defaults.array(forKey: "DuitListArray") as? [Item]{
-//           itemArray = items
-//        }
+        loadItems()
         
     }
     
@@ -121,6 +108,18 @@ class DuitViewController: UITableViewController {
         
         tableView.reloadData()
         
+    }
+    
+    /* Load items from item.plist */
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error encondig item array \(error)")
+            }
+        }
     }
 
 }
