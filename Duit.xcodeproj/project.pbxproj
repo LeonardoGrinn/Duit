@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A73ED553224577A2007CD69E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73ED552224577A2007CD69E /* Item.swift */; };
 		A743CB9D223C244300CA88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9C223C244300CA88BD /* AppDelegate.swift */; };
 		A743CB9F223C244300CA88BD /* DuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9E223C244300CA88BD /* DuitViewController.swift */; };
 		A743CBA2223C244300CA88BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A743CBA0223C244300CA88BD /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A73ED552224577A2007CD69E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A743CB99223C244300CA88BD /* Duit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A743CB9C223C244300CA88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A743CB9E223C244300CA88BD /* DuitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuitViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A73ED554224577AA007CD69E /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				A73ED552224577A2007CD69E /* Item.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		A73ED555224577CB007CD69E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A743CB9E223C244300CA88BD /* DuitViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A73ED556224577E9007CD69E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A743CBA0223C244300CA88BD /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A73ED55722457811007CD69E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A743CBA3223C244400CA88BD /* Assets.xcassets */,
+				A743CBA5223C244400CA88BD /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A743CB90223C244300CA88BD = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				A743CB9C223C244300CA88BD /* AppDelegate.swift */,
-				A743CB9E223C244300CA88BD /* DuitViewController.swift */,
-				A743CBA0223C244300CA88BD /* Main.storyboard */,
-				A743CBA3223C244400CA88BD /* Assets.xcassets */,
-				A743CBA5223C244400CA88BD /* LaunchScreen.storyboard */,
+				A73ED554224577AA007CD69E /* Data Model */,
+				A73ED555224577CB007CD69E /* Controllers */,
+				A73ED556224577E9007CD69E /* Views */,
+				A73ED55722457811007CD69E /* Supporting Files */,
 				A743CBA8223C244400CA88BD /* Info.plist */,
 			);
 			path = Duit;
@@ -136,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A743CB9F223C244300CA88BD /* DuitViewController.swift in Sources */,
+				A73ED553224577A2007CD69E /* Item.swift in Sources */,
 				A743CB9D223C244300CA88BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
