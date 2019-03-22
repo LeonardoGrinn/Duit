@@ -10,7 +10,7 @@ import UIKit
 
 class DuitViewController: UITableViewController {
     
-    let itemArray = ["Dormir", "Leer", "Crisis existencial"]
+    var itemArray = ["Dormir", "Leer", "Crisis existencial"]
     
 
     override func viewDidLoad() {
@@ -46,6 +46,35 @@ class DuitViewController: UITableViewController {
         
         //Delete default graylight.
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    /* Add new items */
+    @IBAction func AddButtonPress(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Añade un nuevo pendiente", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Añadir", style: .default) { (action) in
+            
+            //What will happen once the user clicks the Add item button on the alert button.
+            self.itemArray.append(textField.text!)
+            
+            //Reload data in order to update the Array's content.
+            self.tableView.reloadData()
+        }
+        
+        
+        //Input textfield.
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Añade un nuevo pendiente"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
 
 }

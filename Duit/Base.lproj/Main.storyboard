@@ -33,7 +33,14 @@
                             <outlet property="delegate" destination="b5j-qp-JMD" id="3Qf-zu-j74"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Duit" id="31i-6C-tan"/>
+                    <navigationItem key="navigationItem" title="Duit" id="31i-6C-tan">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PrH-0r-2cK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="AddButtonPress:" destination="b5j-qp-JMD" id="J9e-v0-ddJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acR-NG-gFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
