@@ -12,10 +12,18 @@ class DuitViewController: UITableViewController {
     
     var itemArray = ["Dormir", "Leer", "Crisis existencial"]
     
+    let defaults = UserDefaults.standard
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //Data array consistent.
+        if let items = defaults.array(forKey: "DuitListArray") as? [String]{
+           itemArray = items
+        }
+        
     }
     
     
@@ -59,6 +67,8 @@ class DuitViewController: UITableViewController {
             
             //What will happen once the user clicks the Add item button on the alert button.
             self.itemArray.append(textField.text!)
+            
+            self.defaults.set(self.itemArray, forKey: "DuitListArray")
             
             //Reload data in order to update the Array's content.
             self.tableView.reloadData()
