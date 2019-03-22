@@ -11,17 +11,17 @@ import UIKit
 class DuitViewController: UITableViewController {
     
     var itemArray = [Item]()
-    
-    let defaults = UserDefaults.standard
+     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        print(dataFilePath)
+        
         let newItem = Item()
         newItem.title = "Domir"
-        newItem.done = true
         itemArray.append(newItem)
         
         let newItem2 = Item()
@@ -33,7 +33,7 @@ class DuitViewController: UITableViewController {
         itemArray.append(newItem3)
         
         //Data array consistent.
-//        if let items = defaults.array(forKey: "DuitListArray") as? [String]{
+//        if let items = defaults.array(forKey: "DuitListArray") as? [Item]{
 //           itemArray = items
 //        }
         
@@ -65,7 +65,8 @@ class DuitViewController: UITableViewController {
         //Check is the done value is the oposite of the current row.
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        tableView.reloadData()
+        //Call function saveItem
+        self.saveItem()
         
         //Delete default graylight.
         tableView.deselectRow(at: indexPath, animated: true)
@@ -87,7 +88,8 @@ class DuitViewController: UITableViewController {
             
             self.itemArray.append(newItem)
             
-            self.defaults.set(self.itemArray, forKey: "DuitListArray")
+            //Call function saveItem
+            self.saveItem()
             
             //Reload data in order to update the Array's content.
             self.tableView.reloadData()
@@ -103,6 +105,21 @@ class DuitViewController: UITableViewController {
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
+        
+    }
+    
+    /* Model Manipulation Items */
+    func saveItem() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to : dataFilePath!)
+        } catch {
+            print("Error encondig item array \(error)")
+        }
+        
+        tableView.reloadData()
         
     }
 
