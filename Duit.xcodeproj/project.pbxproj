@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A73ED553224577A2007CD69E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73ED552224577A2007CD69E /* Item.swift */; };
+		A73ED55A224840BF007CD69E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A73ED558224840BF007CD69E /* DataModel.xcdatamodeld */; };
 		A743CB9D223C244300CA88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9C223C244300CA88BD /* AppDelegate.swift */; };
 		A743CB9F223C244300CA88BD /* DuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9E223C244300CA88BD /* DuitViewController.swift */; };
 		A743CBA2223C244300CA88BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A743CBA0223C244300CA88BD /* Main.storyboard */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A73ED552224577A2007CD69E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A73ED559224840BF007CD69E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		A743CB99223C244300CA88BD /* Duit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A743CB9C223C244300CA88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A743CB9E223C244300CA88BD /* DuitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuitViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		A73ED554224577AA007CD69E /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				A73ED552224577A2007CD69E /* Item.swift */,
+				A73ED558224840BF007CD69E /* DataModel.xcdatamodeld */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A743CB9F223C244300CA88BD /* DuitViewController.swift in Sources */,
-				A73ED553224577A2007CD69E /* Item.swift in Sources */,
+				A73ED55A224840BF007CD69E /* DataModel.xcdatamodeld in Sources */,
 				A743CB9D223C244300CA88BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +372,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A73ED558224840BF007CD69E /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A73ED559224840BF007CD69E /* DataModel.xcdatamodel */,
+			);
+			currentVersion = A73ED559224840BF007CD69E /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A743CB91223C244300CA88BD /* Project object */;
 }

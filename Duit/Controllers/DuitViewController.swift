@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import CoreData
 
 class DuitViewController: UITableViewController {
     
     var itemArray = [Item]()
-     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        print(dataFilePath)
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist"))
         
         
         //Data array consistent.
@@ -50,6 +52,10 @@ class DuitViewController: UITableViewController {
         
         
         //Check is the done value is the oposite of the current row.
+        
+        //context.delete(itemArray[indexPath.row])
+        //itemArray.remove(at: indexPath.row)
+        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         //Call function saveItem
@@ -70,8 +76,11 @@ class DuitViewController: UITableViewController {
             
             //What will happen once the user clicks the Add item button on the alert button.
             
-            let newItem = Item()
+            
+            
+            let newItem = Item(context: self.context)
             newItem.title = textField.text!
+            newItem.done = false
             
             self.itemArray.append(newItem)
             
@@ -97,28 +106,25 @@ class DuitViewController: UITableViewController {
     
     /* Model Manipulation Items */
     func saveItem() {
-        let encoder = PropertyListEncoder()
         
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to : dataFilePath!)
+            try context.save()
         } catch {
-            print("Error encondig item array \(error)")
+            print("Error saving context \(error)")
         }
         
         tableView.reloadData()
         
     }
     
-    /* Load items from item.plist */
+    /* Load items from core data Item Entity */
     func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error encondig item array \(error)")
-            }
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
         }
     }
 
