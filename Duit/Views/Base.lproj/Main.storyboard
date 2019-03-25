@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Duit-->
+        <!--Pendientes-->
         <scene sceneID="hrs-cQ-lry">
             <objects>
                 <tableViewController id="b5j-qp-JMD" customClass="DuitViewController" customModule="Duit" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="b5j-qp-JMD" id="3Qf-zu-j74"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Duit" id="31i-6C-tan">
+                    <navigationItem key="navigationItem" title="Pendientes" id="31i-6C-tan">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PrH-0r-2cK">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -52,7 +52,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acR-NG-gFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104.8" y="186.65667166416793"/>
+            <point key="canvasLocation" x="1713" y="187"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hku-Je-XIH">
@@ -69,12 +69,51 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="b5j-qp-JMD" kind="relationship" relationship="rootViewController" id="w6c-Xm-wGl"/>
+                        <segue destination="Xwc-gW-Xck" kind="relationship" relationship="rootViewController" id="zlc-uq-hcR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zk3-G8-wAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="165.59999999999999" y="186.65667166416793"/>
+        </scene>
+        <!--Duit-->
+        <scene sceneID="fo3-3q-TH5">
+            <objects>
+                <tableViewController id="Xwc-gW-Xck" customClass="CategoryViewController" customModule="Duit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z2w-gR-C4c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="cz7-b3-oAj">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cz7-b3-oAj" id="fve-dv-4Ba">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Xwc-gW-Xck" id="7eV-Mn-Nqi"/>
+                            <outlet property="delegate" destination="Xwc-gW-Xck" id="WTT-k6-gXm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Duit" id="IVO-GF-fRV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CoP-RS-OpZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Xwc-gW-Xck" id="K3R-Ih-n1j"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="b5j-qp-JMD" kind="show" identifier="goToItems" id="avk-aY-WgU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ocN-Bj-r1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="916" y="187"/>
         </scene>
     </scenes>
 </document>
