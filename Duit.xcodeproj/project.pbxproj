@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D059A58804AB34676BA52F9 /* Pods_Duit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06759AEF748B0F72DA3A2F93 /* Pods_Duit.framework */; };
 		A73ED55A224840BF007CD69E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A73ED558224840BF007CD69E /* DataModel.xcdatamodeld */; };
 		A743CB9D223C244300CA88BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9C223C244300CA88BD /* AppDelegate.swift */; };
 		A743CB9F223C244300CA88BD /* DuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743CB9E223C244300CA88BD /* DuitViewController.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0349CE352C744AB7821DC89C /* Pods-Duit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duit.debug.xcconfig"; path = "Target Support Files/Pods-Duit/Pods-Duit.debug.xcconfig"; sourceTree = "<group>"; };
+		06759AEF748B0F72DA3A2F93 /* Pods_Duit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Duit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A73ED559224840BF007CD69E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		A743CB99223C244300CA88BD /* Duit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A743CB9C223C244300CA88BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		A743CBA6223C244400CA88BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A743CBA8223C244400CA88BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A76192AC2248584C00F24D75 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		AFF609586E35091486DE6327 /* Pods-Duit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duit.release.xcconfig"; path = "Target Support Files/Pods-Duit/Pods-Duit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,12 +37,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D059A58804AB34676BA52F9 /* Pods_Duit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0037742DE30488C4F97B3467 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06759AEF748B0F72DA3A2F93 /* Pods_Duit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A73ED554224577AA007CD69E /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +91,8 @@
 			children = (
 				A743CB9B223C244300CA88BD /* Duit */,
 				A743CB9A223C244300CA88BD /* Products */,
+				AFC7300600490BE4FF173753 /* Pods */,
+				0037742DE30488C4F97B3467 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +117,16 @@
 			path = Duit;
 			sourceTree = "<group>";
 		};
+		AFC7300600490BE4FF173753 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0349CE352C744AB7821DC89C /* Pods-Duit.debug.xcconfig */,
+				AFF609586E35091486DE6327 /* Pods-Duit.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A743CBAB223C244400CA88BD /* Build configuration list for PBXNativeTarget "Duit" */;
 			buildPhases = (
+				DE6F1B21ABF94345838611E6 /* [CP] Check Pods Manifest.lock */,
 				A743CB95223C244300CA88BD /* Sources */,
 				A743CB96223C244300CA88BD /* Frameworks */,
 				A743CB97223C244300CA88BD /* Resources */,
+				AAF2E377545E5C663D522240 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +194,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AAF2E377545E5C663D522240 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Duit/Pods-Duit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Duit/Pods-Duit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE6F1B21ABF94345838611E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Duit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A743CB95223C244300CA88BD /* Sources */ = {
@@ -320,6 +396,7 @@
 		};
 		A743CBAC223C244400CA88BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0349CE352C744AB7821DC89C /* Pods-Duit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -338,6 +415,7 @@
 		};
 		A743CBAD223C244400CA88BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFF609586E35091486DE6327 /* Pods-Duit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
