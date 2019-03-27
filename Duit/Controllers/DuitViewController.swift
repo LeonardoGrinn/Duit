@@ -7,11 +7,13 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
+import RealmSwift
 
 class DuitViewController: UITableViewController {
     
-    var itemArray = [Item]()
+    var duitItems : Results<Item>?
+    let realm = try! Realm()
     
     var selectedCategory : Category? {
         didSet {
@@ -19,7 +21,6 @@ class DuitViewController: UITableViewController {
         }
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 
     override func viewDidLoad() {
@@ -33,18 +34,23 @@ class DuitViewController: UITableViewController {
     
     /* Tableview Data source */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return duitItems?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DuitItemCell", for: indexPath)
         
-        let item = itemArray[indexPath.row]
+        if let item = duitItems?[indexPath.row] {
+            
+            cell.textLabel?.text = item.title
+            
+            //Add a checkmark when the current cell is selected.
+            cell.accessoryType = item.done == true ? .checkmark : .none
+        } else {
+            cell.textLabel?.text = "Sin pendientes..."
+        }
         
-        cell.textLabel?.text = item.title
         
-        //Add a checkmark when the current cell is selected.
-        cell.accessoryType = item.done == true ? .checkmark : .none
         
         return cell
     }
@@ -54,14 +60,21 @@ class DuitViewController: UITableViewController {
         
         
         //Check is the done value is the oposite of the current row.
+        if let item = duitItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    
+                    //realm.delete(item)
+                    
+                    item.done = !item.done
+                    
+                }
+            } catch {
+                print("Error saving status data \(error)")
+            }
+        }
         
-        //context.delete(itemArray[indexPath.row])
-        //itemArray.remove(at: indexPath.row)
-        
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
-        
-        //Call function saveItem
-        self.saveItem()
+        tableView.reloadData()
         
         //Delete default graylight.
         tableView.deselectRow(at: indexPath, animated: true)
@@ -78,17 +91,19 @@ class DuitViewController: UITableViewController {
             
             //What will happen once the user clicks the Add item button on the alert button.
             
-            
-            
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            newItem.done = false
-            newItem.parentCategory = self.selectedCategory
-            
-            self.itemArray.append(newItem)
-            
-            //Call function saveItem
-            self.saveItem()
+            if let currentCategory = self.selectedCategory {
+                do {
+                    try self.realm.write {
+                        let newItem = Item()
+                        newItem.title = textField.text!
+                        newItem.dateCreated = Date()
+                        currentCategory.items.append(newItem)
+                    }
+                } catch {
+                    print("Error saving new items, \(error)")
+                }
+            }
+
             
             //Reload data in order to update the Array's content.
             self.tableView.reloadData()
@@ -107,70 +122,39 @@ class DuitViewController: UITableViewController {
         
     }
     
-    /* Model Manipulation Items */
-    func saveItem() {
-        
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
-        tableView.reloadData()
-        
-    }
+
     
-    /* Load items from core data Item Entity */
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
-        
-        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-        
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        } else {
-            request.predicate = categoryPredicate
-        }
+    /* Load items from Ream */
+    func loadItems() {
 
-
-        do {
-            itemArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
+        duitItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         
         tableView.reloadData()
     }
 
 }
 
-/* Search Bar Methods */
+///* Search Bar Methods */
 extension DuitViewController: UISearchBarDelegate {
-    
+
     /* When the search bar is focus */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        duitItems = duitItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
-        
-        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        
-        
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
-        
-        /**/
-        loadItems(with: request, predicate: predicate)
+        tableView.reloadData()
     }
-    
+
     /* When the search bar is unfocus */
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            
+
             loadItems()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
-        
+
         }
     }
-   
+
 }
