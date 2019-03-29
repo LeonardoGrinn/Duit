@@ -43,12 +43,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Pendientes" id="31i-6C-tan">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PrH-0r-2cK">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="AddButtonPress:" destination="b5j-qp-JMD" id="J9e-v0-ddJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="UJW-DO-J2C" id="P7G-iN-Grl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acR-NG-gFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,8 +61,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HDp-XC-FY3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UL4-b3-cYm">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UL4-b3-cYm">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
@@ -101,7 +103,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Duit" id="IVO-GF-fRV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CoP-RS-OpZ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="Xwc-gW-Xck" id="K3R-Ih-n1j"/>
                             </connections>

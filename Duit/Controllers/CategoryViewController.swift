@@ -26,7 +26,6 @@ class CategoryViewController: SwipeTableViewController {
         
         /* Heigh of the cell's row */
         tableView.rowHeight = 80.0
-
     }
     
     /* TableView Datasource Methods */
@@ -39,9 +38,18 @@ class CategoryViewController: SwipeTableViewController {
         /* Calling the super class */
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "Aún no has agregado categorias"
-        
-        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].colour ?? "34495E")
+        if let category = categories?[indexPath.row] {
+            cell.textLabel?.text = category.name
+            
+            guard let categoryColor = UIColor(hexString: category.colour) else {fatalError()}
+            
+            
+            cell.backgroundColor = categoryColor
+            
+            /* Contrast Text */
+            cell.textLabel?.textColor = ContrastColorOf(categoryColor, returnFlat: true)
+
+        }
         
         return cell
     }

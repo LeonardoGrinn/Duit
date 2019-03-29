@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class DuitViewController: SwipeTableViewController{
     
@@ -21,18 +22,53 @@ class DuitViewController: SwipeTableViewController{
     }
     
     
-
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
+        /* Delete the cell's border */
+        tableView.separatorStyle = .none
+        
         /* Heigh of the cell's row */
         tableView.rowHeight = 80.0
-        
     }
     
+    /* Navbar colour */
+    override func viewWillAppear(_ animated: Bool) {
+        
+        title = selectedCategory?.name
+        
+        guard let colourHEX = selectedCategory?.colour else {fatalError()}
+        
+        updateNavBar(withHeCode: colourHEX)
+       
+    }
+    
+    /* Navbar defualt colour persistent */
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHeCode: "34495E")
+    }
+    
+    /* Navbar Setup Methods */
+    func updateNavBar (withHeCode colourHexCode: String) {
+        guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist")}
+        
+        guard let navBarColour = UIColor(hexString: colourHexCode) else {fatalError()}
+        
+        
+        navBar.barTintColor = navBarColour
+        
+        navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+        
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        
+        searchBar.barTintColor = navBarColour
+    }
     
     /* Tableview Data source */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,6 +85,20 @@ class DuitViewController: SwipeTableViewController{
         if let item = duitItems?[indexPath.row] {
             
             cell.textLabel?.text = item.title
+            
+            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage:
+                
+                /* Gradient Backgorund */
+                CGFloat(indexPath.row) / CGFloat(duitItems!.count)) {
+                cell.backgroundColor = colour
+                
+                /* Contrast Text */
+                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+            }
+            
+//            print("Version 1: \(CGFloat(indexPath.row / duitItems!.count))")
+//
+//            print("Version 2: \(CGFloat(indexPath.row) / CGFloat(duitItems!.count))")
             
             //Add a checkmark when the current cell is selected.
             cell.accessoryType = item.done == true ? .checkmark : .none
