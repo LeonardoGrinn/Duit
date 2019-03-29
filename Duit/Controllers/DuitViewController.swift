@@ -7,10 +7,9 @@
 //
 
 import UIKit
-//import CoreData
 import RealmSwift
 
-class DuitViewController: UITableViewController {
+class DuitViewController: SwipeTableViewController{
     
     var duitItems : Results<Item>?
     let realm = try! Realm()
@@ -27,7 +26,10 @@ class DuitViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        /* Heigh of the cell's row */
+        tableView.rowHeight = 80.0
         
     }
     
@@ -38,7 +40,11 @@ class DuitViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DuitItemCell", for: indexPath)
+        
+        /* Calling the super class */
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "DuitItemCell", for: indexPath)
         
         if let item = duitItems?[indexPath.row] {
             
@@ -131,10 +137,23 @@ class DuitViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    /* override updateModel fuction */
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = duitItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(item)
+                }
+            } catch {
+                print("Error deleting item, \(error)")
+            }
+        }
+    }
 
 }
 
-///* Search Bar Methods */
+/* Search Bar Methods */
 extension DuitViewController: UISearchBarDelegate {
 
     /* When the search bar is focus */
